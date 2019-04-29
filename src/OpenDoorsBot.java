@@ -16,7 +16,7 @@ public class OpenDoorsBot {
 		OpenDoorsBot instance = new OpenDoorsBot();
 		// steps = instance.getStepsForLevel(1);
 
-		Queue<Integer> steps = instance.getStepsForLevel(6);
+		Queue<Integer> steps = instance.getStepsForLevel(9);
 		instance.startWalking(steps);
 	}
 
@@ -30,7 +30,7 @@ public class OpenDoorsBot {
 
 		for (int step : steps) {
 			robot.keyPress(step);
-			robot.delay(500);
+			robot.delay(300);
 			robot.keyRelease(step);
 			robot.delay(500);
 		}
@@ -59,7 +59,12 @@ public class OpenDoorsBot {
 				} else if (command.contains("walk_free") || command.contains("open_door")) {
 					from = command.substring(12, 14);
 					to = command.substring(16, 18);
-					
+				} else if (command.contains("open_gate")) {
+					from = command.substring(12, 14);
+					to = command.substring(16, 18);
+				} else if (command.contains("close_gate")) {
+					from = command.substring(13, 15);
+					to = command.substring(17, 19);
 				}
 
 				System.out.println(from + " " + to);
